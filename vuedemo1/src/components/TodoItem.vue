@@ -1,14 +1,25 @@
 <template>
-    <li>{{item}}</li>
+    <li class="item">
+      <input type="checkbox" v-model="checked">
+      <slot name="slotItem" v-bind="{checked}">{{item}}</slot>
+    </li>
 </template>
 
 <script>
     export default {
         name: 'TodoList',
-        props: ["item"]
+        props: ["item"],
+        data(){
+          return{
+            checked: false
+          }
+        }
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style>
+  .item{
+    color:red;
+  }
+  
 </style>
