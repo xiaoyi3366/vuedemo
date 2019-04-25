@@ -14,40 +14,51 @@
       </todo-item>
     </ul>
     <Props
-          name="Hello Vue！"
-          :type="type"
-          :is-visible="false"
-          :on-change="handlePropChange"
-          title="属性Demo"
-          class="test1"
-          :class="['test2']"
-          :style="{ marginTop: '20px' }"
-          style="margin-top: 10px"
-        />
+      name="Hello Vue！"
+      :type="type"
+      :is-visible="false"
+      :on-change="handlePropChange"
+      title="属性Demo"
+      class="test1"
+      :class="['test2']"
+      :style="{ marginTop: '20px' }"
+      style="margin-top: 10px"
+    />
+    <Event :name="name" @change="handleEventChange"/>
   </div>
 </template>
 
 <script>
 import TodoItem from './components/TodoItem.vue';
-import Props from './components/Props.vue'
+import Props from './components/Props.vue';
+import Event from './components/Event.vue'
 
 export default {
   name: 'app',
   components: {
     TodoItem,
-    Props
+    Props,
+    Event
   },
   data(){
     return{
       msg:'这是一个页面',
       info:'',
-      list:[]
+      list:[],
+      type: "success",
+      name:'hello'
     }
   },
   methods:{
     handleClick(){
       this.list.push(this.info)
       this.info='';
+    },
+    handlePropChange(val) {
+      this.type = val;
+    },
+    handleEventChange(val){
+      this.name=val;
     }
   }
 }
